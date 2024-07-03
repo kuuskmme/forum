@@ -1,0 +1,273 @@
+@import "user_dash.css";
+
+.entries-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    width: 100%; /* Take up all available width */
+    padding: 20px; /* Spacing from the edges of the viewport */
+}
+
+.category-name {
+    width: 100%;
+    text-align: center;
+    font-size: xx-large;
+    margin-top: 45px;
+    color: #FFA500; /* Neon orange */
+    font-family: 'Bungee', cursive;
+    transform: translateY(-50%);
+    z-index: 1;
+    padding: 10px;
+    background-color:#151515;
+    border-radius: 9px;
+}
+
+.threads-list{
+    list-style: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+    display: flex;
+    flex-direction: column;
+}
+.threads-container{
+    display: flex;
+    flex-direction: column; /* Organize content vertically */
+    background-color: rgba(255, 255, 255, 0.1); /* Translucent background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 1%; /* Internal spacing */
+    width: 69%;
+    margin: 20px auto; /* Centering the container */
+}
+
+.thread-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 88%;
+}
+
+.thread-item a {
+    text-align: left;
+    margin-bottom: 1rem;
+    background-color: #151515;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-family: "Bungee";
+    font-size: x-large;
+    border-radius: 15px;
+    padding: 5px;
+    color: #1685f8;
+    text-decoration: none; /* Removes underline */
+    flex-grow: 1; /* Allows the link to fill available space, pushing the date to the right */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for color and shadow */
+}
+
+.thread-item a:hover {
+    background-color: #1a1a1a;
+    box-shadow: 0 0 10px #1685f8; 
+    
+}
+
+.threads-container li {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly lighter than container */
+    margin-bottom: 10px; /* Space between items */
+    padding: 10px; /* Padding inside each item */
+    border-radius: 5px; /* Slightly rounded corners for each item */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.threads-container li:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Lighter on hover */
+}
+
+.threads-container li a {
+    font-family: "Bungee";
+    color:   	#1685f8;
+    text-decoration: none; /* Removes underline */
+    text-transform: none;
+}
+
+/* Arrow indicator for each thread */
+.threads-container li::after {
+    transform: translateY(-50%); /* Ensure it's centered regardless of line height */
+}
+
+.entries-none{
+    flex-grow: 1;
+    padding: 20px;
+    font-family: "Bungee", cursive;
+    color: #eb7132;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+}
+
+.thread-date-stamp{
+    color: #eb7132;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: auto;
+}
+
+.thread-author-stamp{
+    color: #eb7132;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-right: auto;
+}
+
+.thread-footer{
+    color: #eb7132;
+    display: flex;
+    flex-direction: row;
+    background-color: #1a1a1a;
+    padding: 0.5%;
+    border-radius: 10px;
+    padding-right: 0.5%;
+}
+
+.thread-footer:hover{
+    transform: scale(1.03);
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust the space between elements */
+}
+
+.search-input {
+    padding: 8px;
+    font-size: 16px; /* Adjust size as necessary */
+}
+
+.search-bar-container select {
+    padding: 8px;
+    font-size: 16px;
+}
+.search-bar-container button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#new-thread-form{
+    display:flex;
+    flex-direction:column;
+}
+
+#text-body-field {
+    width: 88%;
+    align-self: center;
+    background-color: #1e1d1d; /* Dark background for the text field */
+    color: #ffffff; /* Light text color for contrast */
+    border: 2px solid #53d9d1; /* Neon border to match the button accent */
+    border-radius: 5px; /* Subtle rounded corners */
+    padding: 12px; /* Adequate padding for text inside the field */
+    min-height: 23vh; /* Minimum height to maintain a large text area */
+    font-size: 16px; /* Adequate font size for readability */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus effects */
+    box-shadow: none; /* Starting without a shadow for a flat design */
+    outline: none; /* Removing the default outline to customize focus effect */
+}
+
+#text-body-field:focus {
+    border-color: #0be779; /* Changing border color to another neon on focus */
+    box-shadow: 0 0 8px #0be779; /* Adding a neon glow effect on focus */
+}
+
+#topic-field {
+    width: 33%;
+    align-self: center;
+    margin: 1%;
+    background-color: #151515; /* Adjusting to a dark background */
+    color: #FFFFFF; /* White text for better readability */
+    border: 2px solid #53d9d1; /* Consistent neon border */
+    border-radius: 5px; /* Consistent rounded corners */
+    padding: 10px; /* Padding for inside spacing */
+    font-size: 1.5em; /* Maintaining font size for emphasis */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus effects */
+    outline: none; /* Removing default outline to customize focus effect */
+}
+
+#topic-field:focus {
+    border-color: #FF61A6; /* Neon pink for focus, adjust if you have a specific neon pink */
+    box-shadow: 0 0 8px #FF61A6; /* Light modern glow effect when selected */
+}
+
+#submit-thread-btn {
+    width: 22%;
+    align-self: center;
+    background: linear-gradient(145deg, #0be779, #12c998); /* Subtle gradient */
+    color: #fff; /* White text color for contrast */
+    border: none; /* Removing the border for a sleeker look */
+    border-radius: 5px; /* More subtle rounded corners */
+    padding: 10px 20px; /* Adequate padding for better text visibility */
+    margin-top: 5px;
+    font-size: 16px; /* Adequate font size for readability */
+    font-weight: bold; /* Making the text bold */
+    cursor: pointer; /* Cursor pointer to indicate it's clickable */
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s; /* Smooth transitions for effects */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+#submit-thread-btn:hover, #submit-thread-btn:focus {
+    background: linear-gradient(145deg, #12c998, #0be779); /* Slight gradient shift on hover/focus */
+    box-shadow: 0 0 15px #0be779, 0 0 20px #12c998; /* Neon glow effect */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+#category-selector{
+    width: 33%;
+    align-self: center;
+    border-radius: 2%;
+    margin: 1%;
+    background-color: #1685f8;
+}
+
+#delete-thread-btn {
+    margin-right: auto;
+    margin-left: 1%;
+    padding: 10px 20px; /* Adjusted for better spacing */
+    background-color: #FF5733; /* A more alerting shade of red */
+    color: #FFFFFF; /* White text for contrast */
+    border: 2px solid #FF681E; /* Darker border for depth */
+    border-radius: 5px; /* Subtle rounded corners */
+    font-size: 16px; /* Readable font size */
+    font-weight: bold; /* Bold text to draw attention */
+    cursor: pointer; /* Cursor pointer to indicate it's clickable */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+    outline: none; /* Removing default outline to customize focus and hover effects */
+}
+
+#delete-thread-btn:hover, #delete-thread-btn:focus {
+    background-color: #FF432E; /* A slightly darker shade on hover/focus for immediate visual feedback */
+    box-shadow: 0 0 8px #FF432E, 0 0 12px #FF432E; /* Adding a glow effect for emphasis */
+}
+
+.search-bar-container h2 {
+    align-self: center; /* Aligns the title to the left but maintains consistency in flex behavior */
+    font-family: 'Bungee', cursive; /* Keeps the font consistent with category names */
+    color: #41ff1e; /* Neon orange, consistent with your category-name style */
+    font-size: 2em; /* Makes it larger and more visible */
+    margin-left: 20px; /* Gives some spacing from the edge */
+    padding: 10px 0; /* Vertical padding without horizontal interference */
+    text-transform: uppercase; /* Makes the text uppercase for more emphasis */
+    width: auto; /* Auto width based on content, with padding taken into account */
+    transition: color 0.3s ease; /* Smooth transition for interactive feedback */
+    margin-left: 1%;
+}
+
+.search-bar-container h2:hover {
+    color: #FFD700; /* Changes color on hover to a different shade for visual feedback */
+}
+
+.search-bar-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.threads-search-container{
+    padding: 1%;
+}

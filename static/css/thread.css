@@ -1,0 +1,368 @@
+@import "user_dash.css";
+
+.content-container {
+    padding-top: 40px;
+}
+
+.user-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 3px solid #151515;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    border-radius: 3%;
+    background-color: #1a1a1a;
+}
+
+.user-name {
+    color: #41ff1e;
+    font-size: 70%;
+}
+
+.user-created-at {
+    font-size: 35%;
+}
+.profile-pic {
+    width: 100%; /* Adjust as needed */
+    height: 100%; /* Adjust as needed */
+    border-radius: 10%;
+}
+
+.thread-container {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgba(7, 2, 0, 0.22); /* Translucent background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Internal spacing */
+    max-width: 55%; /* Adjust based on preference */
+    margin-top: 15px;
+    margin: 20px auto; /* Centering the container */
+    align-items: center;
+}
+
+.thread-container ul {
+    list-style: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+    color:   	#1f2215;
+}
+
+.thread-container li {
+    padding: 10px; /* Padding inside each item */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
+    color: #53d9d1;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 1%;
+    background-color: rgba(21, 21, 21, 0.7);
+    border-radius: 10px;
+}
+
+.thread-container li:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Lighter on hover */
+}
+
+.entries-none{
+    flex-grow: 1;
+    padding: 20px;
+    font-family: "Bungee", cursive;
+    color: #eb7132;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+}
+
+.entries-none li a {
+    font-family: "Bungee";
+    color:   	#1685f8;
+    text-decoration: none; /* Removes underline */
+    text-transform: none;
+    display: block; /* Makes the whole area clickable */
+}
+
+.posts-none{
+    flex-grow: 1;
+    padding: 20px;
+    font-family: "Bungee", cursive;
+    color: #eb7132;
+    margin-left: 100px; /* Adjust based on sidebar width */
+}
+
+#new-post-btn {
+    width: 44%;
+    align-self: center;
+    color: white;
+    padding: 10px 20px; /* Adjust padding for better spacing */
+    text-align: center;
+    font-size: 16px; /* Ensure text is easily readable */
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for both background and box-shadow */
+    background-color: #32CD32; /* Lighter, soothing green */
+    border: 2px solid #3CB371; /* Slightly darker green for the border */
+    border-radius: 5px; /* Subtle rounded corners */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    outline: none; /* Remove outline to focus on border glow effect */
+    box-shadow: none; /* Start without a shadow for a flat design */
+    margin-top: 5px;
+}
+
+#new-post-btn:hover, #new-post-btn:focus {
+    background-color: #3CB371; /* Slightly darker green for interaction */
+    box-shadow: 0 0 8px #98FB98, 0 0 12px #98FB98; /* Soft green glow effect */
+}
+
+.thread-main-content {
+    display: flex;
+    background-color: #1a1a1ab0;
+    border-radius: 10px;
+}
+
+
+.thread-header {
+    width: 100%;
+}
+.thread-detail{
+    flex: 3;
+    padding: 10px;
+    margin:1%;
+    background-color: rgba(21, 21, 21, 0.7);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.thread-title {
+    margin: 1;
+    padding: 10px 0;
+    font-family: "Bungee";
+    color: #53d9d1;
+    background-color: rgba(21, 21, 21, 0.7);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    padding: 5px;
+    
+}
+.reaction {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Adds space between reaction buttons */
+    align-items: center;
+    background-color: #424040;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.reaction a{
+    display: flex;
+    font-size: 2em;
+    margin-top: 1%;
+}
+
+.reaction a:hover {
+    background-color: #0056b3;
+}
+
+.post-item{
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
+    color: #53d9d1;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 1%;
+    background-color: rgba(21, 21, 21, 0.7);
+    border-radius: 10px;
+}
+
+.post-body {
+    margin-left:1%;
+}
+
+.post-reaction{
+    display: flex;
+    justify-content: center;
+}
+
+.posts-list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex;
+    width: 100%;
+}
+
+.post-item{
+    display: flex;
+    flex-direction: column;
+    margin-bottom:auto;
+}
+
+.thread-body{
+    display: flex;
+    flex-direction: column;
+    color: #53d9d1;
+    margin: 1%;
+    margin-bottom: auto;
+}
+
+.thread-footer{
+    color: #eb7132;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgba(21, 21, 21, 0.8);
+    padding: 1%;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.thread-detail:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Lighter on hover */
+}
+
+.post-footer{
+    color: #eb7132;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(21, 21, 21, 0.8);
+    padding: 0.5%;
+    border-radius: 10px;
+    align-items: center; /* Vertically center align items */
+    justify-content: space-between; /* Spreads the child elements */
+}
+
+.post-footer:hover{
+    transform: scale(1.01);
+}
+
+
+.post-author-stamp {
+    color: #f27b9b;
+    display: flex;
+    margin: 1%;
+    margin-right: 2%;
+    text-transform: none;
+    font-size: 1em;
+}
+
+.date-stamp{
+    display: flex;
+    margin: 1%;
+}
+
+.reply-form-container{
+    list-style: none;
+    display: flex;
+    background-color: rgba(21, 21, 21, 0.7);
+    padding: 1%;
+    padding-top: 10px;
+    margin-top: 10px;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.reply-form-container form{
+    display:flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 1%;
+    width: 80%;
+    height: 95%;
+}
+
+.reply-form-container textarea {
+    width: 88%;
+    align-self: center;
+    background-color: #1e1d1d; /* Dark background for the text field */
+    color: #ffffff; /* Light text color for contrast */
+    border: 2px solid #53d9d1; /* Neon border to match the button accent */
+    border-radius: 5px; /* Subtle rounded corners */
+    padding: 12px; /* Adequate padding for text inside the field */
+    min-height: 23vh; /* Minimum height to maintain a large text area */
+    font-size: 16px; /* Adequate font size for readability */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus effects */
+    box-shadow: none; /* Starting without a shadow for a flat design */
+    outline: none; /* Removing the default outline to customize focus effect */
+}
+
+.reply-form-container textarea:focus {
+    border-color: #0be779; /* Changing border color to another neon on focus */
+    box-shadow: 0 0 8px #0be779; /* Adding a neon glow effect on focus */
+}
+
+.reaction button{
+    list-style: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #1f2215;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions for visual effects */
+    font-size: large;
+    align-self: center;
+    height: 33px;
+    margin-top: 8px;
+}
+
+.reaction button:hover{
+    background-color: #a9a9a9;
+    z-index: 1;
+}
+
+.reaction button:active{
+    background-color:#1f2215
+}
+
+
+.post-rating {
+    height: 33px;
+    margin-top: 22%;
+}
+
+.like-btn:hover, .dislike-btn:hover {
+    background-color: #53d9d1; /* Change to a different neon color on hover */
+    box-shadow: 0 0 10px #53d9d1, 0 0 15px #53d9d1; /* Enhanced glow effect on hover */
+}
+
+.dislike-btn.highlighted {
+  background-color: #FF5733; /* Example: Lighter background color */
+  box-shadow: 0 0 8px #FF5733, 0 0 12px #FF5733; /* Glow effect for emphasis */
+  z-index: 2;
+  
+}
+.like-btn.highlighted {
+  /* Add your desired highlighted styles here */
+  background-color: #41ff1e; /* Example: Lighter background color */
+  box-shadow: 0 0 8px #41ff1e, 0 0 12px #41ff1e; /* Glow effect for emphasis */
+  z-index: 2;
+  
+}
+
+#delete-post-btn {
+    margin-right: auto;
+    margin-left: 1%;
+    padding: 10px 20px; /* Adjusted for better spacing */
+    background-color: #FF5733; /* A more alerting shade of red */
+    color: #FFFFFF; /* White text for contrast */
+    border: 2px solid #FF681E; /* Darker border for depth */
+    border-radius: 5px; /* Subtle rounded corners */
+    font-size: 16px; /* Readable font size */
+    font-weight: bold; /* Bold text to draw attention */
+    cursor: pointer; /* Cursor pointer to indicate it's clickable */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+    outline: none; /* Removing default outline to customize focus and hover effects */
+}
+
+#delete-post-btn:hover, #delete-thread-btn:focus {
+    background-color: #FF432E; /* A slightly darker shade on hover/focus for immediate visual feedback */
+    box-shadow: 0 0 8px #FF432E, 0 0 12px #FF432E; /* Adding a glow effect for emphasis */
+}

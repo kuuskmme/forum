@@ -1,0 +1,259 @@
+{{define "header"}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <title>Literary Lions Forum </title>
+{{end}}
+
+{{define "footer"}}
+    <footer class="copyright-section">
+        <p>&copy; kood/Johvi Forum Project made by P. M. Korp and S. Tedremets April 2024. </p>
+    </footer>
+{{end}}
+
+{{define "nav"}}
+<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+<div class="nav-bar">
+    <nav>
+        <div class="background-home link-container"> 
+            <a href="/home" class="home">Home</a>
+        </div>
+        <div class="background-forum link-container"> 
+            <a href="/forum" class="forum">Forum</a>
+        </div>
+        <div class="background-search link-container"> 
+            <a href="/search" class="search">Search...</a>
+        </div>
+        {{ if .UserCtx.Name }}
+        <!-- User is logged in, show logout button -->
+        <div class="background-login link-container">
+            <form action="/logout" method="POST">
+                <button type="submit" class="logout">Log out</button>
+            </form>
+        </div>
+        {{ else }}
+        <!-- User is logged out, show login link -->
+        <div class="background-login link-container"> 
+            <a href="/register" class="login">Login</a>
+        </div>
+        {{ end }}
+    </nav>
+</div>
+{{end}}
+
+{{define "user-dash"}}
+{{ if .UserCtx.Name }}
+<!-- User dashboard, only displayed if .User is not null -->
+<div class="user-sidebar-trigger">
+    <img src="/static/img/user_dash.png" alt="Dashboard" />
+</div>
+<aside class="user-sidebar">
+    <h2>Dashboard</h2>
+    <div class="user-info">
+        <p>Welcome, {{.UserCtx.Name}}</p>
+        <p>Member since:</p> 
+        <p>{{.UserCtx.CreatedAt}}</p>
+    </div>
+    <ul>
+        <li><a href="/user/view-profile/{{.UserCtx.UUID | urlquery}}">Profile</a></li>
+        <li><a href="/user/edit-profile/{{.UserCtx.UUID | urlquery}}">Settings</a></li>
+        <!-- Additional user-specific links can go here -->
+    </ul>
+</aside>
+<script src="/static/js/user_dash.js"></script>
+{{end}}
+{{end}}
+
+{{define "profile-base-self"}}
+    <h2 class="profile-title">{{.User.Name}}'s threads!</h2>
+    <div class="entries-wrapper">
+        <div class="threads-container">
+            {{ if .Threads }}
+                <ul class="threads-list">
+                    {{ range .Threads }}
+                    <li class="thread-item">
+                        <a href="/thread/{{ .ID }}">{{.Category.Name}} > {{ .Topic }}</a> <div class="thread-footer">Posted on: {{ .CreatedAt }}</div>
+                    </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <section class="entries-none">
+                    <h1>Uh oh! Seems like you haven't made any threads yet...</h1>
+                </section>
+            {{ end }}
+        </div>
+    </div>
+    <h2 class="profile-title">{{.User.Name}}'s posts!</h2>
+    <div class="entries-wrapper">
+        <div class="threads-container">
+            {{ if .Posts }}
+                <ul class="threads-list">
+                    {{ range .Posts }}
+                    <li class="thread-item">
+                        <a href="/thread/post{{ .ID }}">{{.ThreadTopic}} > {{ .Body }}</a> <div class="thread-footer">Posted on: {{ .CreatedAt }}</div>
+                    </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <section class="entries-none">
+                    <h1>Uh oh! Seems like you haven't made any posts yet...</h1>
+                </section>
+            {{ end }}
+        </div>
+    </div>
+    <h2 class="profile-title">{{.User.Name}}'s liked posts!</h2>
+    <div class="entries-wrapper">
+        <div class="threads-container">
+            {{ if .UserLikedPosts }}
+                <ul class="threads-list">
+                    {{ range .UserLikedPosts }}
+                    <li class="thread-item">
+                        <a href="/thread/post{{ .ID }}">{{.ThreadTopic}} > {{ .Body }}</a> <div class="thread-footer">Posted on: {{ .CreatedAt }}</div>
+                    </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <section class="entries-none">
+                    <h1>Uh oh! Seems like you haven't liked any posts yet...</h1>
+                </section>
+            {{ end }}
+        </div>
+    </div>
+{{end}}
+
+{{define "profile-base-public"}}
+    <h2 class="profile-title">{{.User.Name}}'s threads!</h2>
+    <div class="entries-wrapper">
+        <div class="threads-container">
+            {{ if .Threads }}
+                <ul class="threads-list">
+                    {{ range .Threads }}
+                    <li class="thread-item">
+                        <a href="/thread/{{ .ID }}">{{.Category.Name}} > {{ .Topic }}</a> <div class="thread-footer">Posted on: {{ .CreatedAt }}</div>
+                    </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <section class="entries-none">
+                    <h1>Uh oh! Seems like they haven't made any threads yet...</h1>
+                </section>
+            {{ end }}
+        </div>
+    </div>
+    <h2 class="profile-title">{{.User.Name}}'s posts!</h2>
+    <div class="entries-wrapper">
+        <div class="threads-container">
+            {{ if .Posts }}
+                <ul class="threads-list">
+                    {{ range .Posts }}
+                    <li class="thread-item">
+                        <a href="/thread/{{ .ThreadID }}">{{.ThreadTopic}} > {{ .Body }}</a> <div class="thread-footer">Posted on: {{ .CreatedAt }}</div>
+                    </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <section class="entries-none">
+                    <h1>Uh oh! Seems like they haven't made any posts yet...</h1>
+                </section>
+            {{ end }}
+        </div>
+    </div>
+    <h2 class="profile-title">{{.User.Name}}'s liked posts!</h2>
+    <div class="entries-wrapper">
+        <div class="threads-container">
+            {{ if .UserLikedPosts }}
+                <ul class="threads-list">
+                    {{ range .UserLikedPosts }}
+                    <li class="thread-item">
+                        <a href="/thread/{{ .ThreadID }}">{{.ThreadTopic}} > {{ .Body }}</a> <div class="thread-footer">Posted on: {{ .CreatedAt }}</div>
+                    </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <section class="entries-none">
+                    <h1>Uh oh! Seems like they haven't liked any posts yet...</h1>
+                </section>
+            {{ end }}
+        </div>
+    </div>
+{{end}}
+
+{{define "profile-settings"}}
+    <form action="/user/edit-profile/{{.UserCtx.UUID | urlquery}}" method="post">
+        <div class="profile-field">
+            <div class="profile-field-c">
+                <span class="field-label">Current Email:</span> {{.User.Email}}
+                <button type="button" id="changeEmailBtn">Change...</button>
+                <input type="hidden" name="emailChangeRequested" id="emailChangeRequested" value="false"/>
+            </div>
+            <input type="email" name="email" id="newemail" placeholder="New email" style="display:none;"/>
+        </div>
+        <div class="profile-field">
+            <div class="profile-field-c">
+                <span class="field-label">Current Password:</span> ********
+                <button type="button" id="changePasswordBtn">Change...</button>
+                <input type="hidden" name="passwordChangeRequested" id="passwordChangeRequested" value="false"/>
+            </div>
+            <input type="password" name="password" id="newpassword" placeholder="New password" required minlength="8" style="display:none;"/>
+        </div>
+        <button type="submit" class="save-changes-btn">Save Changes</button>
+        {{if .Errors.ProfileMessages}}
+        <div class="error-message">
+            {{range .Errors.ProfileMessages}}
+                <div>{{.}}</div>
+            {{end}}
+        </div>
+        {{end}}
+    </form>
+{{end}}
+
+{{define "create-thread"}}
+{{if .UserCtx.Name}}
+<input type="hidden" id="user-uuid" value="{{.UserCtx.UUID}}" />
+    <li class="thread-item">
+        <form id="new-thread-form">
+            <select id="category-selector" name="category">
+                {{ range $.Categories }}
+                <option value="{{.ID}}">{{.Name}}</option>
+                {{ end }}
+            </select>
+            <input type="text" id="topic-field" name="topic" placeholder="Enter topic..." required minlength="1">
+            <textarea id="text-body-field" name="body" placeholder="Type your thread body here..." required minlength="1"></textarea>
+            <button type="submit" id="submit-thread-btn">Submit Thread</button>
+        </form>
+    </li>
+<script src="/static/js/ajax/new_thread.js"></script>
+{{ end }}
+{{ end }}
+
+{{ define "threads-view-search" }}
+<link rel="stylesheet" href="/static/css/threads.css">
+<div class="threads-search-container">
+    <div class="category-name">
+    All matching threads:
+    </div>
+</div>
+<div class="entries-wrapper">
+    <div class="threads-container">
+        {{ if .Threads }}
+            <ul class="threads-list">
+                {{ range .Threads }}
+                <li class="thread-item">
+                    <a href="/thread/{{ .ID }}">{{.Category.Name}} > {{ .Topic }}</a>
+                        <div class="thread-footer">
+                        <p class="thread-date-stamp">Created {{ .CreatedAt }}</p> 
+                        </div>
+                </li>
+                {{ end }}
+            </ul>
+        {{ else }}
+            <section class="entries-none">
+                <h1 class="threads-not-found">This forum is completely barren.. Not even a single thread has been created.</h1>
+                <p class="threads-not-found">Would you like to..?</p>
+                {{template "create-thread" . }}
+            </section>
+        {{ end }}
+    </div>
+</div>
+<script src="/static/js/ajax/new_thread.js"></script>
+{{ end }}

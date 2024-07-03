@@ -1,0 +1,165 @@
+@import "user_dash.css";
+
+
+.forum-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55%; /* Adjust width as needed */
+    margin: 20px auto; /* Center the container and add vertical margin for spacing */
+    margin-bottom: 100px;
+    background-color: #151515; /* Dark background color */
+    padding: 20px; /* Padding around the content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Light shadow for depth */
+}
+
+.forum-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.forum-title {
+    color: #FFA500; /* Neon orange */
+    font-family: 'Bungee', cursive;
+    transform: translateY(-50%);
+    margin-top: 15px;
+    z-index: 1;
+    padding: 10px;
+    background-color:#151515;
+    border-radius: 9px;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px; /* Space between the title and grid */
+    width: 100%;
+    opacity: 0.85;
+}
+
+.category-container {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    overflow: hidden;
+    border: 3px solid #151515; /* Light shading for border */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Light shadow for depth */
+    transition: transform 0.3s ease;
+    background-color: #1a1a1a; /* Slightly lighter than the main background for contrast */
+    border-radius: 20px;
+}
+
+.category-container:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+}
+
+#new-category-popup{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    overflow: hidden;
+    border: 3px solid #151515; /* Light shading for border */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Light shadow for depth */
+    transition: transform 0.3s ease;
+    background-color: #1a1a1a; /* Slightly lighter than the main background for contrast */
+    border-radius: 20px;
+}
+
+.category-icon {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.category-link {
+    color: inherit;
+}
+
+.category-name {    
+    width: 100%;
+    font-family: 'Bungee', cursive;
+    cursor: pointer;
+    opacity: 0;
+    background-color: #151515; /* Example background color */
+    color: #53d9d1; /* Example text color */
+    padding-top: 10px; /* Example padding */
+    z-index: 2; /* Ensure it's above the sidebar */
+    transition: opacity 0.5s ease;
+    overflow: hidden; /* Hide overflowing text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis (...) for overflow */
+    animation: fitText 0.5s forwards; /* Apply animation */
+}
+
+@keyframes fitText {
+    from { font-size: 100%; } /* Start with original font size */
+    to { font-size: 50%; } /* Gradually reduce font size */
+}
+
+
+.category-container:hover .category-name {
+    opacity: 1;
+}
+
+.new-category-form{
+    display: flex;
+    flex-direction:column;
+}
+
+.new-category-popup{
+    background-color: unset;    
+    text-align: center;
+    font-size: 2em;
+    padding-bottom: 15%;
+    padding-top: 15%;
+    cursor: default;
+}
+
+.new-category-input{
+    width: 90%;
+    align-self: center;
+    background-color: #FFAF1BE5;
+    border-radius: 5px;
+    border-color: darkgreen;
+    border-width: medium;
+    padding: 1%;
+}
+
+#new-category-btn{
+    width: 50%;
+    align-self: center;
+    background-color: #53d9d1;
+    border-radius: 10px;
+    border-width: medium;
+    border-color: #53d9d1;
+    margin-top: 5px;
+}
+
+#remove-category-btn{
+    width: 66%;
+    align-self: center;
+    background-color: #d5d953;
+    border-radius: 10px;
+    border-width: medium;
+    border-color: #d5d953;
+    margin-top: 5px;
+}
+
+#category-check-result{
+    width: 100%;
+    font-family: 'Bungee', cursive;
+    cursor: default;
+    color: #53d9d1; /* Example text color */
+    padding-top: 10px; /* Example padding */
+    z-index: 2; /* Ensure it's above the sidebar */
+    transition: opacity 0.5s ease;
+    overflow: hidden; /* Hide overflowing text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Show ellipsis (...) for overflow */
+    animation: fitText 0.5s forwards; /* Apply animation */
+}

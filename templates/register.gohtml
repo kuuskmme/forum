@@ -1,0 +1,68 @@
+<!-- register.gohtml -->
+{{ define "content" }}
+<link rel="stylesheet" href="/static/css/register.css">
+<div class="register-container" id="register-container">
+	<div class="form-container sign-up-container">
+		<form action="/register" method="post">
+			<h1>Create Account</h1>
+			<div class="social-container">
+				<a href="/auth/github" class="social"><img class="github-icon" src="static/img/github-icon.jpg"></a>
+				<a href="/auth/google" class="social"><img class="google-icon" src="static/img/google-icon.jpeg"></a>
+				<a href="/auth/discord" class="social"><img class="discord-icon" src="https://logowik.com/content/uploads/images/discord-new-20218785.jpg"></a>
+			</div>
+			<span>or use your email for registration</span>
+			<input type="text" name="name" placeholder="Name" required />
+			<input type="email" name="email" placeholder="Email" required />
+			<input type="password" name="password" placeholder="Password" required minlength="8"/>
+			<input type="hidden" name="action" value="signup">			
+			{{if .Errors.SignUpErrors}}
+    			<div class="error-message">
+        			{{range .Errors.SignUpErrors}}
+            			<div>{{.}}</div>
+        			{{end}}
+    			</div>
+			{{end}}
+			<button type="submit">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/register" method="post">
+			<h1>Sign in</h1>
+			<div class="social-container">
+				<a href="/auth/github" class="social"><img class="github-icon" src="static/img/github-icon.jpg"></a>
+				<a href="/auth/google" class="social"><img class="google-icon" src="static/img/google-icon.jpeg"></a>
+				<a href="/auth/discord" class="social"><img class="discord-icon" src="https://logowik.com/content/uploads/images/discord-new-20218785.jpg"></a>
+			</div>
+			<span>or use your account</span>
+			<input type="email" name="loginemail" placeholder="Email" />
+			<input type="password" name="loginpassword" placeholder="Password" />
+			<input type="hidden" name="action" value="signin">
+			<a href="/recovery">Forgot your password?</a>
+			{{if .Errors.LoginErrors}}
+    			<div class="error-message">
+        			{{range .Errors.LoginErrors}}
+            			<div>{{.}}</div>
+        			{{end}}
+    			</div>
+			{{end}}
+			<button type="submit"> Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>Rejoin the Literary Lions!</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, fellow bookworm!</h1>
+				<p>Start your journey with the Literary Lions!</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="/static/js/register.js"></script>
+{{end}}

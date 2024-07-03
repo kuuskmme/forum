@@ -1,0 +1,47 @@
+{{ define "content" }}
+<link rel="stylesheet" href="/static/css/threads.css">
+<div class="category-name-container">
+    <div class="category-name">
+    {{$.Category.Name}}
+    </div>
+</div>
+<div class="entries-wrapper">
+    <div class="threads-container">
+        {{ if .Threads }}
+            <ul class="threads-list">
+                {{template "create-thread" . }}
+                {{ range .Threads }}
+                <li class="thread-item">
+                    <a href="/thread/{{ .ID }}">{{ .Topic }}</a>
+                    <div class="thread-footer">
+                    {{if eq $.UserCtx.Name .Author.Name}}
+                    <button type="button" id="delete-thread-btn" data-thread-id="{{ .ID }}">Delete Thread</button>
+                    <script src="/static/js/ajax/delete_thread.js"></script>
+                    {{else}}
+                    <p class="thread-author-stamp">Created by {{ .Author.Name }}</p> 
+                    {{end}}
+                    <p class="thread-date-stamp">Posted {{ .CreatedAt }}</p> 
+                    </div>
+                </li>
+                {{ end }}
+            </ul>
+        {{ else }}
+            {{if .UserCtx.Name}}
+            <section class="entries-none">
+                <h1 class="threads-not-found">Uh oh! Seems like no threads exist for this topic yet.</h1>
+                <p class="threads-not-found">Would you like to create one?</p>
+                {{template "create-thread" . }}
+                <script src="/static/js/ajax/delete_thread.js"></script>
+            </section>
+            {{ else }}
+            <section class="entries-none">
+                <h1 class="threads-not-found">Uh oh! Seems like no threads exist for this topic yet.</h1>
+                <p class="threads-not-found">Sign up to create one!</p>
+                {{template "create-thread" . }}
+                <script src="/static/js/ajax/delete_thread.js"></script>
+            </section>
+            {{ end }}
+        {{ end }}
+    </div>
+</div>
+{{ end }}

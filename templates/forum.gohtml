@@ -1,0 +1,36 @@
+{{define "content"}}
+<link rel="stylesheet" href="/static/css/forum.css">
+<div class="forum-header">
+    <h1 class="forum-title">Choose your category below</h1>
+</div>
+<div class="forum-container">
+    <div class="categories-grid">
+        {{range .Categories}}
+        <a href="/forum/{{.ID | urlquery}}" class="category-link">
+            <div class="category-container">
+                <img src="/static/img/category_icon.png" alt="{{.Name}}" class="category-icon"/>
+                <div class="category-name">{{.Name}}</div>
+            </div>
+        </a>
+        {{end}}
+        {{if .UserCtx.Name}}
+        <div id="new-category-popup" class="category-container new-category-popup" style="display: none;">
+            <form id="new-category-form" class="new-category-form">
+                <label for="new-category-name" class="category-name new-category-popup">Enter Category:</label>
+                <input type="text" id="new-category-name" name="category_name" class="new-category-input">
+                <button id="new-category-btn">New Category...</button>
+                <button id="remove-category-btn">Remove Category...</button>
+            </form>
+            <p id="category-check-result"></p>
+        </div>
+        <a id="new-category-link" class="category-link">
+            <div class="category-container new-category-container">
+                <img src="/static/img/category_icon.png" alt="New Category" class="category-icon"/>
+                <div class="category-name">New Category...</div>
+            </div>
+        </a>
+        <script src="/static/js/ajax/create_category.js"></script>
+        {{end}}
+    </div>
+</div>
+{{end}}

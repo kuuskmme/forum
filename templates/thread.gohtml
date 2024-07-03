@@ -1,0 +1,85 @@
+{{ define "content" }}
+{{if .UserCtx.UUID}}
+<script>
+    // Some extra javascript so we can access UUID easier.
+    var UserCtx = {
+        UUID: "{{.UserCtx.UUID}}"
+    };
+</script>
+{{end}}
+<link rel="stylesheet" href="/static/css/thread.css">
+<div class="thread-container">
+    <!-- Thread Header Section -->
+    <div class="thread-header">
+        <h1 class="thread-title"> {{ .Thread.Topic }}</h1>
+    </div>
+    <div class="thread-main-content">
+        <!-- User Details Section -->
+        <a href="/user/view-profile/{{.Thread.Author.UUID | urlquery}}" class="user-details">
+            <img src="/static/img/forum_icon.png" alt="Profile Picture" class="profile-pic">
+            <span class="user-name">{{.Thread.Author.Name}}</span>
+            <span class="user-created-at">Member since: </span> 
+            <span class="user-created-at">{{.Thread.Author.CreatedAt}}</span> 
+        </a>
+        <section class="thread-detail">
+            <p class="thread-body">{{ .Thread.Body }}</p>
+            <div class="thread-footer">
+                {{if .UserCtx.Name}}
+                <div class="reaction">
+                    <button class="like-btn" data-id="{{.Thread.ID}}" data-type="thread">👍</button>
+                    <button class="dislike-btn" data-id="{{.Thread.ID}}" data-type="thread">👎</button>
+                    <div id="thread-rating-{{.Thread.ID}}" class="thread-rating">{{.Thread.Rating}}</div>
+                    <button class="thread-view-icon">👁️</button> 
+                    <div id="thread-views-{{.Thread.ID}}" class="thread-view">{{.Thread.Views}}</div>  
+                </div>
+                {{end}}
+                <p class="date-stamp">Posted {{ .Thread.CreatedAt }}</p>
+            </div>
+        </section>
+    </div>
+    {{ if .Posts }}
+    <ul class="posts-list">
+        {{ range .Posts }}
+        <li class="post-item">
+            <p class="post-body">{{ .Body }}</p>
+                <div class="thread-footer">
+                    <!-- Placeholder for post reaction -->
+                    {{if eq $.UserCtx.Name .PostAuthor.Name}}
+                    <button type="button" id="delete-post-btn" data-post-id="{{ .ID }}">Delete Post</button>
+                    <script src="/static/js/ajax/delete_reply.js"></script>
+                    {{else}}
+                    <a href="/user/view-profile/{{.PostAuthor.UUID | urlquery}}" class="post-author-stamp">Posted By {{ .PostAuthor.Name}}</a>
+                    {{end}}
+                    {{if $.UserCtx.Name}}
+                    <div class="reaction">
+                        <button class="like-btn" data-id="{{.ID}}" data-type="post">👍</button>
+                        <button class="dislike-btn" data-id="{{.ID}}" data-type="post">👎</button>
+                        <div id="post-rating-{{.ID}}" class="post-rating">{{.Rating}}</div>
+                    </div>
+                    {{end}}
+                    <p class="date-stamp">Posted {{ .CreatedAt }}</p>
+                </div>
+        </li>
+        {{ end }}
+    </ul>
+    {{ end }}
+    {{ if .UserCtx.Name }}
+    <!-- New Reply Form -->
+    <div class="reply-form-container">
+        <form action="/thread/{{.Thread.ID}}/new-post" id="reply_form" method="post">
+            <input type="hidden" id="thread_id" value="{{.Thread.ID}}" />
+            <textarea name="reply-content" class="reply-textbox" id="reply_content"placeholder="Leave your comment here" required minlength="1"></textarea>
+            <button type="submit" id="new-post-btn">Comment</button>
+        </form>
+        <script src="/static/js/ajax/new_reply.js"></script>
+    </div>
+    {{end}}
+    {{ if and (not .Posts) (not .UserCtx.Name) }}
+    <section class="entries-none">
+        <h1>Uh oh! Seems like no posts or comments exist for this thread yet.</h1>
+        <p>Sign up to create one!</p>
+    </section>
+    {{ end }}
+</div>
+<script src="/static/js/ajax/thread.js"></script>
+{{ end }}

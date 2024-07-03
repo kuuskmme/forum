@@ -1,0 +1,92 @@
+@import "threads.css";
+@import "user_dash.css";
+
+.error-message{
+	font-family: 'Bungee';
+	color: red;
+	font-size: inherit;
+	margin-top: 20px;
+}
+
+.error-message div {
+    margin-bottom: 5px;
+}
+
+.save-changes-btn:hover {
+    background-color: #47c2b1; /* Darker shade for hover effect */
+}
+
+.profile-title{
+    text-align: center;
+	color: #53d9d1; /* Neon blue */
+    font-family: 'Bungee', cursive;
+    display: flex;
+    top: 30%; 
+    transform: translateY(-50%);
+    margin: 0;
+    z-index: 1;
+    padding: 10px;
+    background-color:#151515;
+    border-radius: 9px;
+    margin-top: 2%;
+    justify-content: center;
+}
+
+.profile-container{
+	text-align: center;
+    width: 80%; /* Adjust width as needed */
+    margin: 20px auto; /* Center the container and add vertical margin for spacing */
+    background-color: #151515; /* Dark background color */
+    padding: 20px; /* Padding around the content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Light shadow for depth */
+}
+
+.profile-field{
+	font-family: 'Bungee', cursive;
+	color: #f27b9b; /* Neon blue */
+	margin-bottom: 20px; /* Space between fields */
+    display: flex;
+    justify-content: center;
+}
+
+.profile-field-c{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.field-label {
+    color: #FFA500; 
+    margin-right: 10px; /* Space between label and value */
+}
+
+.save-changes-btn {
+    background-color: #53d9d1; 
+    color: #151515; 
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px; 
+    font-size: 16px; 
+}
+
+#newemail, #newpassword {
+    display: block; 
+    margin: 10px auto; 
+    background-color: #f27b9b; 
+    border-radius: 8px; /* Light border radius for less rectangular appearance */
+    padding: 10px 20px; /* Neon-green colored background padding */
+    width: 60%; 
+    color: #000; 
+}
+
+#changeEmailBtn, #changePasswordBtn{
+	background-color: #53d9d1; /* Example button color */
+    color: #151515; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px; /* Optional: rounded corners for the button */
+    font-size: 14px; /* Adjust as needed */
+}
+
